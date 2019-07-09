@@ -1,0 +1,16 @@
+import re
+comment = re.compile(r'/\*(.*?)\*/')
+text1 = '/* this is a comment */'
+text2 = '''/* this is a
+            multiline comment */
+'''
+an1 = comment.findall(text1)
+print(an1)
+an2 = comment.findall(text2)
+print(an2)
+comment = re.compile(r'/\*((?:.|\n)*?)\*/')
+an3 = comment.findall(text2)
+print(an3)
+comment = re.compile(r'/\*(.*?)\*/', re.DOTALL)
+an3 = comment.findall(text2)
+print(an3)

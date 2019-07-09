@@ -1,0 +1,24 @@
+from ws4py.client.threadedclient import WebSocketClient
+
+
+class DummyClient(WebSocketClient):
+    def opened(self):
+        self.send("{'event': 'addChannel', 'channel': 'ok_sub_futureusd_btc_ticker_this_week'}")  # 发送请求数据格式
+
+    def closed(self, code, reason=None):
+        print("Closed down", code, reason)
+
+    # 服务器返回消息
+    def received_message(self, m):
+        print("recv:", m)
+
+
+if __name__ == '__main__':
+    try:
+        # 服务器连接地址wss://real.okex.com:10440/websocket/okexapi  (该地址需翻墙，测试可找其他地址)
+        ws = DummyClient('ws://localhost:8080/websocket', protocols=['chat'])
+        ws.connect()
+        ws.send("my test...")
+        ws.run_forever()
+    except KeyboardInterrupt:
+        ws.close()

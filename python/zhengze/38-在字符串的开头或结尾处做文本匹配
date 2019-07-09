@@ -1,0 +1,24 @@
+import os
+from urllib.request import urlopen
+
+def resad_date(name):
+    if name.startswith(("http:","https:","ftp:")):
+        return urlopen(name).read()
+    else:
+        with open(name) as f:
+            return f.read()
+
+filename = 'spam.txt'
+print(filename.endswith('.txt'))
+print(filename.startswith("file:"))
+url = 'http://www.python.org'
+print(url.startswith('http:'))
+filename = os.listdir(".")
+print(filename)
+name = [name for name in filename if name.endswith(('.py','.txt'))]
+print(name)
+print(any(name.endswith('.py') for name in filename))
+choices = ["https:","ftp:"]
+url = "https://www.python.org"
+a = url.startswith(tuple(choices))
+print(a)

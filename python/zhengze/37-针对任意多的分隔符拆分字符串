@@ -1,0 +1,19 @@
+import re
+line = 'asdf ffgh; dsf, es,dfds,    foo'
+result = re.split(r"[;,\s]\s*", line)
+print(result)
+fields = re.split(r"(;|,|\s)\s*", line)
+print(fields)
+line1 ="asdfghjkllgg"
+result = re.split(r" ", line)
+ret = re.match(r".+", line).group()
+print(ret)
+values = fields[::2]
+delimiters = fields[1::2]+['']
+print(fields)
+print(values)
+print(delimiters)
+newLine = ''.join(v+d for v,d in zip(values, delimiters))
+print(newLine)
+result = re.split(r'(?:,|;|\s)\s*', line)
+print(result)
